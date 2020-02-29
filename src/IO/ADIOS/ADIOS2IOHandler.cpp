@@ -1152,29 +1152,29 @@ namespace detail
                 }
             }
 
-	    auto const pFileName = auxiliary::getEnvString( "OPENPMD_ADIOS2_PARAMETER_FILE", "" );
-	    if (pFileName.size() > 0) {
-	      if (auxiliary::file_exists(pFileName)) {
-		int rank; MPI_Comm_rank(m_impl.m_comm, &rank);
-		if (rank == 0) std::cout<<" parsing config file: "<<pFileName<<std::endl;
-		std::ifstream pFile (pFileName.c_str(), std::ifstream::in);
-		if (pFile.is_open())
-		  {
-		    std::string line;
-		    while(getline(pFile, line)){
-		      if(line[0] == '#' || line.empty())
-			continue;
-		      auto delimiterPos = line.find("=");
-		      auto name = line.substr(0, delimiterPos);
-		      auto value = line.substr(delimiterPos + 1);
-		      if (rank == 0) std::cout << name << " " << value << std::endl;
-		      m_IO.SetParameter(name, value);
-		    }		    
-		  } else {
-		  std::cerr << "Couldn't open config file for reading.\n";
-		}
-	      }
-	    } // pFile
+        auto const pFileName = auxiliary::getEnvString( "OPENPMD_ADIOS2_PARAMETER_FILE", "" );
+        if (pFileName.size() > 0) {
+          if (auxiliary::file_exists(pFileName)) {
+        int rank; MPI_Comm_rank(m_impl.m_comm, &rank);
+        if (rank == 0) std::cout<<" parsing config file: "<<pFileName<<std::endl;
+        std::ifstream pFile (pFileName.c_str(), std::ifstream::in);
+        if (pFile.is_open())
+          {
+            std::string line;
+            while(getline(pFile, line)){
+              if(line[0] == '#' || line.empty())
+            continue;
+              auto delimiterPos = line.find("=");
+              auto name = line.substr(0, delimiterPos);
+              auto value = line.substr(delimiterPos + 1);
+              if (rank == 0) std::cout << name << " " << value << std::endl;
+              m_IO.SetParameter(name, value);
+            }            
+          } else {
+          std::cerr << "Couldn't open config file for reading.\n";
+        }
+          }
+        } // pFile
 #endif
         }
     }
