@@ -34,7 +34,7 @@ int main(
 
     int  size;
     MPI_Comm_size(MPI_COMM_WORLD, &size);
-          
+
     // Total (in this case 4D) dataset across all MPI ranks.
     // Will be the same for all configured benchmarks.
     openPMD::Extent total{

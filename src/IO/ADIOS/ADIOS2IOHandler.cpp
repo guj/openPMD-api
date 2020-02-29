@@ -1169,7 +1169,7 @@ namespace detail
               auto value = line.substr(delimiterPos + 1);
               if (rank == 0) std::cout << name << " " << value << std::endl;
               m_IO.SetParameter(name, value);
-            }            
+            }
           } else {
           std::cerr << "Couldn't open config file for reading.\n";
         }
