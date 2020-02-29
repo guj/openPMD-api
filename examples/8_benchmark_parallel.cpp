@@ -32,10 +32,13 @@ int main(
     openPMD::Datatype dt = openPMD::determineDatatype<type>();
 #endif
 
+    int  size;
+    MPI_Comm_size(MPI_COMM_WORLD, &size);
+		  
     // Total (in this case 4D) dataset across all MPI ranks.
     // Will be the same for all configured benchmarks.
     openPMD::Extent total{
-        100,
+        50*size,
         100,
         100,
         10
